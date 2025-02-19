@@ -12,10 +12,10 @@ import scipy
 
 
 #input data
-mfa_data = pd.read_excel('mfa_data.xlsx', sheet_name = 'mfa_data')
-eq = pd.read_excel('mfa_data.xlsx', sheet_name = 'equations')
-input_flows = pd.read_excel('mfa_data.xlsx', sheet_name = 'input_flows')
-tcs = pd.read_excel('mfa_data_excel.xlsx', sheet_name = 'tcs')
+mfa_data = pd.read_excel('data/mfa_data.xlsx', sheet_name = 'mfa_data')
+eq = pd.read_excel('data/mfa_data.xlsx', sheet_name = 'equations')
+input_flows = pd.read_excel('data/mfa_data.xlsx', sheet_name = 'input_flows')
+tcs = pd.read_excel('data/mfa_data_excel.xlsx', sheet_name = 'tcs')
 
 # Data Cleaning
 input_flows.rename(columns = {"Unnamed: 0": "Flow Name"}, inplace = True)
@@ -154,7 +154,7 @@ while valid_count < runs:
 
 #%% Save the output
 
-montecarlo_result.to_csv('MCS_results.csv')
+montecarlo_result.to_csv('results/MCS_results.csv')
 
 
 

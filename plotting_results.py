@@ -12,9 +12,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-input_flows = pd.read_excel('mfa_data.xlsx', sheet_name = 'input_flows')
+input_flows = pd.read_excel('data/mfa_data.xlsx', sheet_name = 'input_flows')
 input_flows.rename(columns = {"Unnamed: 0": "Flow Name"}, inplace = True)
-montecarlo_result = pd.read_csv('MCS_results.csv', index_col=0)
+montecarlo_result = pd.read_csv('results/MCS_results.csv', index_col=0)
 
 
 #%% Estimating optimal solution
