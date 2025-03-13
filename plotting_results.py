@@ -179,6 +179,7 @@ plt.show()
 #%%% Plot 2: output rates
 
 out_rates_df = montecarlo_result[['Mismanagement Rate', 'Management Rate', 'Recovery Rate', 'Recycling Rate','RP Recovery Rate', 'NRP Recovery Rate','IWS Recovery Rate','PET Recovery Rate']]
+out_rates_df = out_rates_df*100
 out_rates_densities = [gaussian_kde(out_rates_df[column]) for column in out_rates_df.columns]  # Calculate KDE for each column
 
 #input plots
@@ -197,13 +198,13 @@ for row in range(3):
 
             # Plot the KDE
             axes[row, col].plot(x_values, out_rates_densities[i](x_values), color='#003049', label='Predicted PDF for model indicators')
-            axes[row, col].axvline(ranges.loc[ranges['Variable']==column]['Max Likelihood solution'].values[0]/100, color='black', linestyle='--', linewidth=2, label='Max Likelihood Solution')
+            axes[row, col].axvline(ranges.loc[ranges['Variable']==column]['Max Likelihood solution'].values[0], color='black', linestyle='--', linewidth=2, label='Max Likelihood Solution')
 
         
             # Add labels and title
             axes[row, col].set_title(column, **title_font)
             axes[row, col].set_ylabel('Density', **axis_font)
-            axes[row, col].set_xlabel('Quantity in tons per month', **axis_font)
+            axes[row, col].set_xlabel('Percentage', **axis_font)
         
         elif i == len(out_rates_df.columns):  # Add legend in the last subplot
             axes[row, col].axis('off')  # Turn off the axis for empty plots
@@ -225,7 +226,7 @@ in_df_columns = {'F2':'F2: Collection by Itinerant Waste Buyers', 'F6':'F6: Coll
                  'F7':'F7: Collection by wastepickers from landfills',
                  'F12':'F12: Collection of Non-Recyclable Plastic by BOVs', 'F4':'F4: Collection by FS in corporation bins '
                        }
-
+out_rates_df = out_rates_df/100
 for output in out_rates_df.columns:
     i=0  
     fig, axes = plt.subplots(2, 4, figsize=(20, 10))  
